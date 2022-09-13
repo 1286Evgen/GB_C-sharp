@@ -15,7 +15,7 @@ int[,]array = GetArray(rows, columns, minValue, maxValue);
 PrintArray(array);
 Console.WriteLine();
 
-//GetMinSumRow(array);
+GetMinSumRow(array);
 
 ///////////////////////////////////////////////////////////////////////////
 // Задает массив со случайными числами
@@ -44,15 +44,16 @@ void PrintArray(int[,]inArray)
     }
 }
 // Определяет строку в заданном массиве с нименьшей суммой элементов
-
+void GetMinSumRow(int [,]arr)
+{
     int minsum = Int32.MaxValue;
     int indexminrow = 0;
-    for (int i = 0; i < array.GetLength(0); i++)
+    for (int i = 0; i < arr.GetLength(0); i++)
     {
         int sum = 0;
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < arr.GetLength(1); j++)
         {
-            sum = sum + array[i, j];        
+            sum = sum + arr[i, j];        
         }
         if (sum < minsum)
         {
@@ -60,5 +61,5 @@ void PrintArray(int[,]inArray)
             indexminrow = i + 1; // фиксирует номер строки с минимальной суммой элементов
         }
     }
-
-Console.WriteLine("строка с наименьшей суммой елементов под номером: " + (indexminrow) + ", с суммой елементов равной: " + (minsum));
+    Console.WriteLine("строка с наименьшей суммой елементов под номером: " + (indexminrow) + ", с суммой елементов равной: " + (minsum));
+}
