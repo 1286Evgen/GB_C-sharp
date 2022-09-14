@@ -19,13 +19,16 @@ PrintArray(matrixB);
 Console.WriteLine();
 
 // Проверка возможности получения произведения двух матриц
-if (rowsA != columnsB)
+if (columnsA != rowsB)
 {
     Console.WriteLine("Матрицы А и В не могут быть перемножены");
-} 
-int[,] resmatrix = GetResultMatrix (matrixA, matrixB);
-PrintArray(resmatrix);
-Console.WriteLine();
+    return;    
+}
+
+int[,] resultMatrix = new int[rowsA,columnsB]; // создал пустую матрицу
+
+MultiplyMatrix(matrixA, matrixB, resultMatrix); // находим произведение двух матриц и записываем результат в пустую матрицу
+PrintArray(resultMatrix);
 
 ///////////////////////////////////////////////////////////////////////////
 // Задает матрицу и заполняет ее случайными числами
@@ -53,21 +56,20 @@ void PrintArray(int[,] mat)
         Console.WriteLine();
     }
 }
+
 // Находит произведение двух матрих
-int[,] GetResultMatrix (int[,] matrixA, int[,] matrixB);
+void MultiplyMatrix(int[,] firstMat, int[,] secomdMat, int[,] resultMat)
 {
-    int[,] resmat = new int[matrixB.GetLength(0), matrixB.GetLength(1)];
-    for (int i = 0; i < matrixB.GetLength(0); i++)
+  for (int i = 0; i < resultMat.GetLength(0); i++)
+  {
+    for (int j = 0; j < resultMat.GetLength(1); j++)
     {
-        for (int j = 0; j < matrixB.GetLength(1); j++)
-        {
-            int res = 0;
-            for (int x = 0; x < matrixA.GetLength(0); x++)
-            {
-                res = res + matrixA [x,j] * matrixB[i,x];
-            }
-            resmat[i,j] = res;
-        }
+      int sum = 0;
+      for (int k = 0; k < firstMat.GetLength(1); k++)
+      {
+        sum += firstMat[i,k] * secomdMat[k,j];
+      }
+      resultMat[i,j] = sum;
     }
-    return resmat; 
+  }
 }
