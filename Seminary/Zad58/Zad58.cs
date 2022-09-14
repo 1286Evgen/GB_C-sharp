@@ -54,25 +54,19 @@ void PrintArray(int[,] mat)
     }
 }
 // Находит произведение двух матрих
-int[,] GetResultMatrix (int[,] matA, int[,] matB);
+int[,] GetResultMatrix (int[,] matrixA, int[,] matrixB);
 {
-    int[,] resmat = new int[matB.GetLength(0), matB.GetLength(1)];
-    for (int ir = 0; ir < matB.GetLength(0); ir++)
+    int[,] resmat = new int[matrixB.GetLength(0), matrixB.GetLength(1)];
+    for (int i = 0; i < matrixB.GetLength(0); i++)
     {
-        for (int jr = 0; jr < matB.GetLength(1); jr++)
+        for (int j = 0; j < matrixB.GetLength(1); j++)
         {
-            for (int ja = 0; ja < matB.GetLength(0); ja++)
+            int res = 0;
+            for (int x = 0; x < matrixA.GetLength(0); x++)
             {
-                for (int ib = 0; ib < matB.GetLength(0); ib++)
-                {
-                    int res = 0;
-                    for (int ia = 0; ia < matA.GetLength(1); ia++; int jb = 0; jb < matB.GetLength(0); jb++)
-                    {
-                        res = res + matA[ia,ja] * matB[ib,jb];
-                    }
-                    resmat [ir,jr] = res;
-                }
+                res = res + matrixA [x,j] * matrixB[i,x];
             }
+            resmat[i,j] = res;
         }
     }
     return resmat; 
